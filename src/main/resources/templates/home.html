@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MemberList</title>
+</head>
+<body>
+
+<h1 style="text-align: center">Member Manager</h1>
+
+<button style="width: 80px; display: block;margin: auto" onclick="location.href='/insert'">직원추가</button >
+
+<br>
+<form method="post" action="/searching">
+    <div style="text-align: center; margin: 0 auto">
+        <select name="searchType" size="1">
+            <option value=1>이름</option>
+            <option value=2>직책</option>
+            <option value=3>부서</option>
+        </select>
+        <input type="text" name="word" required>
+        <input type="submit" value="검색">
+        <button type="button" onclick="location.href='/'">전체조회</button >
+    </div>
+</form>
+<br>
+<table style="text-align: center; width:80%; margin:0 auto;">
+    <tr>
+        <th>이름</th>
+        <th>부서</th>
+        <th nowrap="50">직책</th>
+        <th>이메일</th>
+        <th>전화번호</th>
+        <th width="40px"></th>
+    </tr>
+    <tr th:each="m : ${member}">
+        <td nowrap="100" th:text="${m.name}"></td>
+        <td nowrap="100" th:text="${m.team}"></td>
+        <td th:text="${m.position}"></td>
+        <td>[[${m.email}]]@widetns.com</td>
+        <td th:text="${m.phone}"></td>
+        <td><a th:href="@{/delete(num=${m.num})}"><div style="width:40px;color: white; background: gray">삭제</div></a></td>
+    </tr>
+
+</table>
+</body>
+</html>

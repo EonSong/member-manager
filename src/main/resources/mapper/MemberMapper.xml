@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.testdb.model.dao.MemberDao">
+<select id="selectMemberList" resultType="com.example.testdb.model.dto.MemberInfo">
+    <![CDATA[
+        SELECT * FROM member
+    ]]>
+</select>
+<select id="searchMemberName" parameterType="String" resultType="com.example.testdb.model.dto.MemberInfo">
+    <![CDATA[
+        select * from member where name like concat('%',#{name},'%');
+    ]]>
+</select>
+<select id="searchMemberPosition" parameterType="String" resultType="com.example.testdb.model.dto.MemberInfo">
+    <![CDATA[
+        select * from member where position like concat('%',#{position},'%');
+    ]]>
+</select>
+<select id="searchMemberTeam" parameterType="String" resultType="com.example.testdb.model.dto.MemberInfo">
+    <![CDATA[
+        select * from member where team like concat('%',#{team},'%');
+    ]]>
+</select>
+<insert id="insertMember">
+    <![CDATA[
+        insert into member values(null, #{team}, #{position}, #{name}, #{email}, #{phone});
+    ]]>
+</insert>
+<delete id="deleteMember">
+    <![CDATA[
+        delete from member where num= #{no};
+    ]]>
+</delete>
+</mapper>
